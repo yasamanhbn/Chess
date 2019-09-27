@@ -1,5 +1,7 @@
 package pieces;
 
+import com.Ground;
+
 public class Knight extends Piece {
 
     public Knight(int row, int column, String color) {
@@ -8,7 +10,8 @@ public class Knight extends Piece {
     }
 
     @Override
-    public void findPossibleMove() {
+    public void findPossibleMove(Ground g) {
 
     }
+
 }

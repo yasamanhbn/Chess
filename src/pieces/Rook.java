@@ -12,11 +12,11 @@ public class Rook extends Piece {
 
     @Override
     public void findPossibleMove(Ground g) {
+        super.clearArray();
         Square[][] squares = g.getSquars();
         //got to up
-        if(super.getRow()!=7){
             for(int i=super.getRow()+1; i<8; i++){
-                if(squares[i][super.getColumn()]!=null)
+                if(squares[i][super.getColumn()].getMyPiece()==null)
                     super.addSquare(squares[i][super.getColumn()]);
                 else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
                     super.addSquare(squares[i][super.getColumn()]);
@@ -24,11 +24,9 @@ public class Rook extends Piece {
                 }
                 else  break;
             }
-        }
         //go to down
-        else if(super.getRow()!=0){
             for(int i=super.getRow()-1; i>=0; i--){
-                if(squares[i][super.getColumn()]!=null)
+                if(squares[i][super.getColumn()].getMyPiece()==null)
                     super.addSquare(squares[i][super.getColumn()]);
                 else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
                     super.addSquare(squares[i][super.getColumn()]);
@@ -36,11 +34,9 @@ public class Rook extends Piece {
                 }
                 else  break;
             }
-        }
         //go to Right
-        else if(super.getColumn()!=7){
             for(int i=super.getColumn()+1; i<8; i++){
-               if(squares[super.getRow()][i]!=null)
+               if(squares[super.getRow()][i].getMyPiece()==null)
                    super.addSquare(squares[super.getRow()][i]);
                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
                    super.addSquare(squares[super.getRow()][i]);
@@ -48,11 +44,9 @@ public class Rook extends Piece {
                }
                else  break;
             }
-        }
         //go to Left
-        else if(super.getColumn()!=0){
             for(int i=super.getColumn()-1; i>=0; i--){
-                if(squares[super.getRow()][i]!=null)
+                if(squares[super.getRow()][i].getMyPiece()==null)
                     super.addSquare(squares[super.getRow()][i]);
                 else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
                     super.addSquare(squares[super.getRow()][i]);
@@ -60,7 +54,6 @@ public class Rook extends Piece {
                 }
                 else  break;
             }
-        }
         //end of the method
     }
 
