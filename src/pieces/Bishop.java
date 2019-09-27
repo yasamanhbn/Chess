@@ -1,5 +1,7 @@
 package pieces;
 
+import com.Ground;
+
 public class Bishop extends Piece {
 
     public Bishop(int row, int column, String color) {
@@ -8,7 +10,7 @@ public class Bishop extends Piece {
     }
 
     @Override
-    public void findPossibleMove() {
+    public void findPossibleMove(Ground ground) {
 
     }
 }

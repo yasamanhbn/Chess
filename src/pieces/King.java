@@ -1,5 +1,8 @@
 package pieces;
 
+import com.Ground;
+import com.Square;
+
 public class King extends Piece {
 
     public King(int row, int column, String color) {
@@ -8,7 +11,8 @@ public class King extends Piece {
     }
 
     @Override
-    public void findPossibleMove() {
+    public void findPossibleMove(Ground ground) {
+        Square[][] squares = ground.getSquars();
 
     }
 }

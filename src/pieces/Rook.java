@@ -1,5 +1,8 @@
 package pieces;
 
+import com.Ground;
+import com.Square;
+
 public class Rook extends Piece {
 
     public Rook(int row, int column, String color) {
@@ -8,7 +11,57 @@ public class Rook extends Piece {
     }
 
     @Override
-    public void findPossibleMove() {
-
+    public void findPossibleMove(Ground g) {
+        Square[][] squares = g.getSquars();
+        //got to up
+        if(super.getRow()!=7){
+            for(int i=super.getRow()+1; i<8; i++){
+                if(squares[i][super.getColumn()]!=null)
+                    super.addSquare(squares[i][super.getColumn()]);
+                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                    super.addSquare(squares[i][super.getColumn()]);
+                    break;
+                }
+                else  break;
+            }
+        }
+        //go to down
+        else if(super.getRow()!=0){
+            for(int i=super.getRow()-1; i>=0; i--){
+                if(squares[i][super.getColumn()]!=null)
+                    super.addSquare(squares[i][super.getColumn()]);
+                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                    super.addSquare(squares[i][super.getColumn()]);
+                    break;
+                }
+                else  break;
+            }
+        }
+        //go to Right
+        else if(super.getColumn()!=7){
+            for(int i=super.getColumn()+1; i<8; i++){
+               if(squares[super.getRow()][i]!=null)
+                   super.addSquare(squares[super.getRow()][i]);
+               else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                   super.addSquare(squares[super.getRow()][i]);
+                   break;
+               }
+               else  break;
+            }
+        }
+        //go to Left
+        else if(super.getColumn()!=0){
+            for(int i=super.getColumn()-1; i>=0; i--){
+                if(squares[super.getRow()][i]!=null)
+                    super.addSquare(squares[super.getRow()][i]);
+                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                    super.addSquare(squares[super.getRow()][i]);
+                    break;
+                }
+                else  break;
+            }
+        }
+        //end of the method
     }
+
 }

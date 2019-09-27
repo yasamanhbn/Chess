@@ -8,6 +8,7 @@ public abstract class Piece  {
     private String color;
     private ArrayList<Square> possibleMoves;
     protected String type;
+
     public Piece(int row, int column, String color) {
         this.row = row;
         this.column = column;
@@ -19,11 +20,12 @@ public abstract class Piece  {
             possibleMoves.clear();
     }
 
-    public void addSquare(Square square){
+    public void addSquare(Square square)
+    {
         possibleMoves.add(square);
     }
 
-    public abstract void findPossibleMove();
+    public abstract void findPossibleMove(Ground g);
 
     public int getRow() {
         return row;
