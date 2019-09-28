@@ -12,7 +12,7 @@ public class King extends Piece {
 
     @Override
     public void findPossibleMove(Ground ground) {
-        Square[][] squares = ground.getSquars();
+        Square[][] squares = ground.getSquares();
 
     }
 }

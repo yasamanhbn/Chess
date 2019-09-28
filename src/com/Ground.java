@@ -39,7 +39,7 @@ public class Ground {
         }
     }
 
-    public Square[][] getSquars() {
+    public Square[][] getSquares() {
         return ground;
     }
 

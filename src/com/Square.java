@@ -22,4 +22,8 @@ public class Square {
     public int getColumn() {
         return column;
     }
+
+    public void setMyPiece(Piece myPiece) {
+        this.myPiece = myPiece;
+    }
 }

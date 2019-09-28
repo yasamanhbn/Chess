@@ -13,7 +13,7 @@ public class Rook extends Piece {
     @Override
     public void findPossibleMove(Ground g) {
         super.clearArray();
-        Square[][] squares = g.getSquars();
+        Square[][] squares = g.getSquares();
         //got to up
             for(int i=super.getRow()+1; i<8; i++){
                 if(squares[i][super.getColumn()].getMyPiece()==null)

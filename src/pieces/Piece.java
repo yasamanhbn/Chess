@@ -27,11 +27,17 @@ public abstract class Piece  {
 
     public abstract void findPossibleMove(Ground g);
 
+    public ArrayList<Square> getPossibleMoves() {
+        return possibleMoves;
+    }
+
     public void printPossibleMove(){
         for(int i=0; i<possibleMoves.size(); i++) {
-            System.out.println(type+"  row: "+possibleMoves.get(i).getRow() + " column:"+possibleMoves.get(i).getColumn());
+            System.out.print(type+"  row: "+possibleMoves.get(i).getRow() + " column:"+possibleMoves.get(i).getColumn()+"   ");
         }
+        System.out.println();
     }
+
     public int getRow() {
         return row;
     }

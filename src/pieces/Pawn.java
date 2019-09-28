@@ -13,7 +13,7 @@ public class Pawn extends Piece {
     @Override
     public void findPossibleMove(Ground ground) {
         super.clearArray();
-        Square[][] squares = ground.getSquars();
+        Square[][] squares = ground.getSquares();
         if (super.getColor().equals("white")) {
             //for first move
             if (super.getRow() == 1) {

@@ -13,7 +13,7 @@ public class Bishop extends Piece {
     @Override
     public void findPossibleMove(Ground ground) {
         super.clearArray();
-        Square[][] squares = ground.getSquars();
+        Square[][] squares = ground.getSquares();
         //up and right
         int column = super.getColumn()+1;
         for(int i=super.getRow()+1; i<8;i++ ) {
