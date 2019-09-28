@@ -1,6 +1,8 @@
 package com;
 
 
+import Graghics.Board;
+
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +12,7 @@ public class Main {
         Ground ground = new Ground();
         ground.printGround();
         Square[][] squares = ground.getSquares();
+        new Board();
         Scanner sc = new Scanner(System.in);
 
         int firstRow = sc.nextInt();
