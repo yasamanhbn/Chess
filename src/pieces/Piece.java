@@ -24,7 +24,7 @@ public abstract class Piece  {
     {
         possibleMoves.add(square);
     }
-
+    public abstract void setImage(Square square,String color);
     public abstract void findPossibleMove(Ground g);
 
     public ArrayList<Square> getPossibleMoves() {

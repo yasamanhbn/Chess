@@ -3,11 +3,34 @@ package pieces;
 import com.Ground;
 import com.Square;
 
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 public class Rook extends Piece {
 
     public Rook(int row, int column, String color) {
         super(row, column, color);
         type="Rook";
+    }
+
+    @Override
+    public void setImage(Square square, String color) {
+        Image img,newImage;
+        try {
+            if (color.equals("white")) {
+                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whiteRook.png"));
+            }
+            else {
+                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackRook.jpg"));
+            }
+            newImage = img.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+            square.setIcon(new ImageIcon(newImage));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

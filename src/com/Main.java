@@ -8,8 +8,8 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-
-        Ground ground = new Ground();
+        new Board();
+        /*Ground ground = new Ground();
         ground.printGround();
         Square[][] squares = ground.getSquares();
         new Board();
@@ -25,6 +25,6 @@ public class Main {
             squares[secondRow][secondColumn].setMyPiece(squares[firstRow][firstColumn].getMyPiece());
             squares[firstRow][firstColumn].setMyPiece(null);
         }
-        ground.printGround();
+        ground.printGround();*/
     }
 }

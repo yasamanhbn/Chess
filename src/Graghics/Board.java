@@ -1,5 +1,7 @@
 package Graghics;
 
+import com.Ground;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,9 +11,9 @@ public class Board extends JFrame {
     public Board(){
         super("Chess");
         this.setLayout(new BorderLayout());
-        chessPanel = new JPanel();
-        createChessBoard();
-        this.add(chessPanel,BorderLayout.CENTER);
+//        chessPanel = new JPanel();
+//        createChessBoard();
+        this.add(new Ground(),BorderLayout.CENTER);
         this.setSize(1200,800);
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);

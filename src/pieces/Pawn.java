@@ -1,6 +1,12 @@
 package pieces;
 
 import com.*;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.*;
 
 public class Pawn extends Piece {
@@ -8,6 +14,23 @@ public class Pawn extends Piece {
     public Pawn(int row, int column, String color) {
         super(row, column, color);
         type="Pawn";
+    }
+
+    @Override
+    public void setImage(Square square, String color) {
+        Image img,newImage;
+        try {
+            if (color.equals("white")) {
+                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whitePawn.jpg"));
+            }
+            else {
+                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackPawn.jpg"));
+            }
+            newImage = img.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
+            square.setIcon(new ImageIcon(newImage));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     @Override
