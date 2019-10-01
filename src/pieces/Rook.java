@@ -21,10 +21,10 @@ public class Rook extends Piece {
         Image img,newImage;
         try {
             if (color.equals("white")) {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whiteRook.png"));
+                img = ImageIO.read(new FileInputStream(".\\images\\whiteRook.png"));
             }
             else {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackRook.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\blackRook.png"));
             }
             newImage = img.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
             square.setIcon(new ImageIcon(newImage));

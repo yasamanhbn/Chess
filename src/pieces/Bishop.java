@@ -21,10 +21,10 @@ public class Bishop extends Piece {
         Image img,newImage;
         try {
             if (color.equals("white")) {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whiteBishop.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\whiteBishop.png"));
             }
             else {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackBishop.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\blackBishop.png"));
             }
             newImage = img.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
             square.setIcon(new ImageIcon(newImage));

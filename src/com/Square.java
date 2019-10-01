@@ -7,19 +7,21 @@ import java.awt.*;
 public class Square extends JButton {
    private int row,column;
    private Piece myPiece;
-    public Square(int row, int column, Piece myPiece) {
+   public Square(int row, int column, Piece myPiece) {
         super();
         this.row = row;
         this.column = column;
         this.myPiece = myPiece;
-        if ((column % 2 == 1 && row % 2 == 1) || (column % 2 == 0 && row% 2 == 0)) {
-            this.setBackground(Color.WHITE);
+        setBackground(this);
+    }
+    public void setBackground(Square square){
+        if ((square.getColumn() % 2 == 1 && square.getRow() % 2 == 1) || (square.getColumn() % 2 == 0 && square.getRow()% 2 == 0)) {
+            square.setBackground(Color.WHITE);
         }
         else {
-            this.setBackground(Color.BLACK);
+            square.setBackground(new Color(42, 42, 42));
         }
     }
-
     public Piece getMyPiece() {
         return myPiece;
     }
@@ -34,5 +36,8 @@ public class Square extends JButton {
 
     public void setMyPiece(Piece myPiece) {
         this.myPiece = myPiece;
+    }
+    public void removeImage(Square square){
+       square.setIcon(null);
     }
 }

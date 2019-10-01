@@ -31,13 +31,6 @@ public abstract class Piece  {
         return possibleMoves;
     }
 
-    public void printPossibleMove(){
-        for(int i=0; i<possibleMoves.size(); i++) {
-            System.out.print(type+"  row: "+possibleMoves.get(i).getRow() + " column:"+possibleMoves.get(i).getColumn()+"   ");
-        }
-        System.out.println();
-    }
-
     public int getRow() {
         return row;
     }

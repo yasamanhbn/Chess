@@ -21,10 +21,10 @@ public class Pawn extends Piece {
         Image img,newImage;
         try {
             if (color.equals("white")) {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whitePawn.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\whitePawn.png"));
             }
             else {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackPawn.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\blackPawn.png"));
             }
             newImage = img.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             square.setIcon(new ImageIcon(newImage));
@@ -45,7 +45,8 @@ public class Pawn extends Piece {
                 if (squares[super.getRow() + 2][super.getColumn()].getMyPiece() == null &&
                         squares[super.getRow() + 1][super.getColumn()].getMyPiece() == null)
                     super.addSquare(squares[super.getRow() + 2][super.getColumn()]);
-            } else {
+            }
+            else {
                 if (squares[super.getRow() + 1][super.getColumn()].getMyPiece() == null)
                     super.addSquare(squares[super.getRow() + 1][super.getColumn()]);
             }
@@ -82,17 +83,19 @@ public class Pawn extends Piece {
                 if (squares[super.getRow() - 2][super.getColumn()].getMyPiece() == null &&
                         squares[super.getRow() - 1][super.getColumn()].getMyPiece() == null)
                     super.addSquare(squares[super.getRow() - 2][super.getColumn()]);
-            } else {
+            }
+            else {
                 if (squares[super.getRow() - 1][super.getColumn()].getMyPiece() == null)
                     super.addSquare(squares[super.getRow() - 1][super.getColumn()]);
             }
             //move for capturing
             if (super.getRow() != 0 && super.getColumn() != 0 && super.getColumn() != 7) {
                 if (squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece().getColor().equals("white"))
-                    super.addSquare(squares[super.getRow() + 1][super.getColumn() + 1]);
+                    super.addSquare(squares[super.getRow() - 1][super.getColumn() + 1]);
                 if (squares[super.getRow() - 1][super.getColumn() - 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() - 1].getMyPiece().getColor().equals("white"))
                     super.addSquare(squares[super.getRow() - 1][super.getColumn() - 1]);
-            } else if (super.getColumn() == 0) {
+            }
+            else if (super.getColumn() == 0) {
                 if (squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece().getColor().equals("white"))
                     super.addSquare(squares[super.getRow() + 1][super.getColumn() + 1]);
             } else if (super.getColumn() == 7) {

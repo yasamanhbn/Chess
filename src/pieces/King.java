@@ -21,10 +21,10 @@ public class King extends Piece {
         Image img,newImage;
         try {
             if (color.equals("white")) {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\whiteKing.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\whiteKing.png"));
             }
             else {
-                img = ImageIO.read(new FileInputStream("E:\\java\\code\\Chess\\images\\blackKing.jpg"));
+                img = ImageIO.read(new FileInputStream(".\\images\\blackKing.png"));
             }
             newImage = img.getScaledInstance(100, 100, Image.SCALE_DEFAULT);
             square.setIcon(new ImageIcon(newImage));
