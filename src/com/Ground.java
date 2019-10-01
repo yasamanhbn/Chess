@@ -11,10 +11,12 @@ public class Ground extends JPanel {
     //second index=>column
     private Square[][] ground;
     private SquaresListener squaresListener;
-
+    private Player whitePlayer,blackPlayer;
     public Ground(){
         super();
         this.setLayout(new GridLayout(8, 8));
+        whitePlayer = new Player("white");
+        blackPlayer = new Player("black");
         ground = new Square[8][8];
         squaresListener = new SquaresListener(this);
         setPieceToGround();
@@ -23,6 +25,7 @@ public class Ground extends JPanel {
     public Square[][] getSquares() {
         return ground;
     }
+
     private void setPieceToGround(){
         //rook
         ground[0][0]=new Square(0,0,new Rook(0,0,"white"));
@@ -126,6 +129,14 @@ public class Ground extends JPanel {
         this.ground[7][7].getMyPiece().setImage(ground[7][7],"black");
         this.ground[7][7].addMouseListener(squaresListener);
         this.add(ground[7][7]);
+    }
+
+    public Player getWhitePlayer() {
+        return whitePlayer;
+    }
+
+    public Player getBlackPlayer() {
+        return blackPlayer;
     }
 
     public void printGround(){

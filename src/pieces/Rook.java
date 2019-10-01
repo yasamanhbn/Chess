@@ -41,7 +41,7 @@ public class Rook extends Piece {
             for(int i=super.getRow()+1; i<8; i++){
                 if(squares[i][super.getColumn()].getMyPiece()==null)
                     super.addSquare(squares[i][super.getColumn()]);
-                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                else if(!super.getColor().equals(squares[i][super.getColumn()].getMyPiece().getColor())){
                     super.addSquare(squares[i][super.getColumn()]);
                     break;
                 }
@@ -51,7 +51,7 @@ public class Rook extends Piece {
             for(int i=super.getRow()-1; i>=0; i--){
                 if(squares[i][super.getColumn()].getMyPiece()==null)
                     super.addSquare(squares[i][super.getColumn()]);
-                else if(!super.getColor().equals(squares[super.getRow()][i].getMyPiece().getColor())){
+                else if(!super.getColor().equals(squares[i][super.getColumn()].getMyPiece().getColor())){
                     super.addSquare(squares[i][super.getColumn()]);
                     break;
                 }
