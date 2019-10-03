@@ -33,7 +33,7 @@ public class SquaresListener implements MouseListener {
                         return;
                     }
                 }
-                //change pieces place;
+
                 square1 = (Square) e.getSource();
                 if (square1.getMyPiece() != null) {
                     square1.getMyPiece().findPossibleMove(ground);
@@ -49,6 +49,7 @@ public class SquaresListener implements MouseListener {
             else {
                 Square square2 = (Square) e.getSource();
                 if (possibleMove.contains(square2)) {
+                    //change pieces place;
                     square2.setMyPiece(square1.getMyPiece());
                     square2.getMyPiece().setImage(square2, square2.getMyPiece().getColor());
                     square2.getMyPiece().setRow(square2.getRow());
@@ -83,11 +84,9 @@ public class SquaresListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
-
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-
     }
 }
