@@ -14,7 +14,7 @@ public class Board extends JFrame {
         setWhiteBack();
         information.setPreferredSize(new Dimension(400,800));
         text = new JLabel();
-        text.setFont(new Font("Courier", Font.BOLD,20));
+        text.setFont(new Font("Courier", Font.BOLD,30));
         text.setForeground(new Color(59, 240, 255));
         information.add(text);
         this.add(information,BorderLayout.WEST);

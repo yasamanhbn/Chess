@@ -39,7 +39,6 @@ public class King extends Piece {
 
     @Override
     public void findPossibleMove(Ground ground) {
-        System.out.println(" row and column"+getRow()+"   "+ getColumn());
         super.clearArray();
         Square[][] squares = ground.getSquares();
             pieces.clear();

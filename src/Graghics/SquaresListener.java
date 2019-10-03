@@ -2,6 +2,8 @@ package Graghics;
 
 import com.Ground;
 import com.Square;
+import pieces.King;
+
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -11,12 +13,15 @@ public class SquaresListener implements MouseListener {
     private Ground ground;
     private Square square1;
     private int turn;
+    private boolean kish;
     private int playerSelector;
-    private ArrayList<Square> possibleMove;
+    private ArrayList<Square> possibleMove,temptMoving;
     public SquaresListener(Ground ground) {
+        temptMoving = new ArrayList<>();
         this.ground = ground;
         playerSelector = 0;
         turn =0 ;
+        kish = false;
     }
 
     @Override
@@ -39,9 +44,7 @@ public class SquaresListener implements MouseListener {
                     square1.getMyPiece().findPossibleMove(ground);
                     possibleMove = square1.getMyPiece().getPossibleMoves();
                     //set red background for possible move
-                    for (Square s : possibleMove) {
-                        (s).setBackground(new Color(139, 0, 25));
-                    }
+
                 }
                 if(possibleMove.size()!=0)
                     turn = 1;
@@ -56,6 +59,7 @@ public class SquaresListener implements MouseListener {
                     square2.getMyPiece().setColumn(square2.getColumn());
                     square1.setMyPiece(null);
                     square1.removeImage(square1);
+                    checkForKish(square2.getMyPiece().getColor());
                     //change panel background
                     playerSelector++;
                     if(playerSelector%2==0)
@@ -63,14 +67,34 @@ public class SquaresListener implements MouseListener {
                     else
                         Board.setBlackBack();
                 }
-                //remove red background
-                for (Square s : possibleMove) {
-                    s.setBackground(s);
-                }
                 turn = 0;
                 possibleMove.clear();
             }
         }
+    private void checkForKish(String color) {
+        ArrayList<Square> checkForKingPlace;
+        ArrayList<Square> pieces = new ArrayList<>();
+        Square[][] squares = ground.getSquares();
+        //get all the black pieces
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squares[i][j].getMyPiece() != null && squares[i][j].getMyPiece().getColor().equals(color)) {
+                    pieces.add(squares[i][j]);
+                }
+            }
+        }
+        for (Square sq : pieces) {
+            sq.getMyPiece().findPossibleMove(ground);
+            checkForKingPlace = sq.getMyPiece().getPossibleMoves();
+            for (Square s : checkForKingPlace) {
+                if (s.getMyPiece() instanceof King) {
+                    kish = true;
+                    Board.setText("Kish");
+                    break;
+                }
+            }
+        }
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -84,9 +108,22 @@ public class SquaresListener implements MouseListener {
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        Square square = (Square) e.getSource();
+        if (square.getMyPiece() != null) {
+            square.getMyPiece().findPossibleMove(ground);
+            temptMoving = square.getMyPiece().getPossibleMoves();
+            //set red background for possible move
+            for (Square s : temptMoving) {
+                (s).setBackground(new Color(139, 0, 25));
+            }
+        }
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        if(temptMoving!=null)
+            for (Square s : temptMoving) {
+                s.setBackground(s);
+            }
     }
 }

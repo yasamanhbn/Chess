@@ -69,8 +69,8 @@ public class Pawn extends Piece {
             }
             else if(super.getColumn()==7){
                 if (squares[super.getRow() + 1][super.getColumn() - 1].getMyPiece() != null) {
-                    if (squares[super.getRow() + 1][super.getColumn() + 1].getMyPiece().getColor().equals("black"))
-                        super.addSquare(squares[super.getRow() + 1][super.getColumn() + 1]);
+                    if (squares[super.getRow() + 1][super.getColumn() - 1].getMyPiece().getColor().equals("black"))
+                        super.addSquare(squares[super.getRow() + 1][super.getColumn() - 1]);
                 }
             }
         }
@@ -97,9 +97,9 @@ public class Pawn extends Piece {
             }
             else if (super.getColumn() == 0) {
                 if (squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece().getColor().equals("white"))
-                    super.addSquare(squares[super.getRow() + 1][super.getColumn() + 1]);
+                    super.addSquare(squares[super.getRow() - 1][super.getColumn() + 1]);
             } else if (super.getColumn() == 7) {
-                if (squares[super.getRow() - 1][super.getColumn() - 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() + 1].getMyPiece().getColor().equals("white"))
+                if (squares[super.getRow() - 1][super.getColumn() - 1].getMyPiece() != null && squares[super.getRow() - 1][super.getColumn() - 1].getMyPiece().getColor().equals("white"))
                     super.addSquare(squares[super.getRow() + 1][super.getColumn() + 1]);
             }
         }
