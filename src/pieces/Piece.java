@@ -15,12 +15,12 @@ public abstract class Piece  {
         this.color = color;
         possibleMoves = new ArrayList<>();
     }
-    public void clearArray(){
-        if(possibleMoves!=null)
+    void clearArray(){
+        if(possibleMoves!=null && possibleMoves.size()!=0)
             possibleMoves.clear();
     }
 
-    public void addSquare(Square square)
+    void addSquare(Square square)
     {
         possibleMoves.add(square);
     }

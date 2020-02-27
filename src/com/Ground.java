@@ -42,13 +42,13 @@ public class Ground extends JPanel {
         ground[0][2].getMyPiece().setImage(ground[0][2],"white");
         ground[0][2].addMouseListener(squaresListener);
         this.add(ground[0][2]);
-        //queen
-        ground[0][3]=new Square(0,3,new Queen(0,3,"white"));
+        //king
+        ground[0][3]=new Square(0,3,new King(0,3,"white"));
         ground[0][3].getMyPiece().setImage(ground[0][3],"white");
         ground[0][3].addMouseListener(squaresListener);
         this.add(ground[0][3]);
-        //king
-        ground[0][4]=new Square(0,4,new King(0,4,"white"));
+        //queen
+        ground[0][4]=new Square(0,4,new Queen(0,4,"white"));
         ground[0][4].getMyPiece().setImage(ground[0][4],"white");
         ground[0][4].addMouseListener(squaresListener);
         this.add(ground[0][4]);
@@ -104,13 +104,13 @@ public class Ground extends JPanel {
         this.ground[7][2].getMyPiece().setImage(ground[7][2],"black");
         this.ground[7][2].addMouseListener(squaresListener);
         this.add(ground[7][2]);
-        //queen
-        ground[7][3]=new Square(7,3,new Queen(7,3,"black"));
+        //king
+        ground[7][3]=new Square(7,3,new King(7,3,"black"));
         ground[7][3].getMyPiece().setImage(ground[7][3],"black");
         ground[7][3].addMouseListener(squaresListener);
         this.add(ground[7][3]);
-        //king
-        ground[7][4]=new Square(7,4,new King(7,4,"black"));
+        //queen
+        ground[7][4]=new Square(7,4,new Queen(7,4,"black"));
         ground[7][4].getMyPiece().setImage(ground[7][4],"black");
         ground[7][4].addMouseListener(squaresListener);
         this.add(ground[7][4]);
@@ -137,17 +137,5 @@ public class Ground extends JPanel {
 
     public Player getBlackPlayer() {
         return blackPlayer;
-    }
-
-    public void printGround(){
-        for(int i=0 ; i<8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (ground[i][j].getMyPiece() != null)
-                    System.out.print(ground[i][j].getMyPiece().getType() + "|");
-                else
-                    System.out.print("    |");
-            }
-            System.out.println();
-        }
     }
 }

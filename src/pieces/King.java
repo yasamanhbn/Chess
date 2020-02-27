@@ -46,7 +46,8 @@ public class King extends Piece {
             for(int i=0; i<8; i++){
                 for(int j=0; j<8; j++){
                     if(squares[i][j].getMyPiece()!=null && !squares[i][j].getMyPiece().getColor().equals(super.getColor())){
-                        pieces.add(squares[i][j]);
+                        if(!squares[i][j].getMyPiece().getType().equals("king"))
+                            pieces.add(squares[i][j]);
                     }
                 }
             }

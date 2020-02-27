@@ -38,15 +38,13 @@ public class SquaresListener implements MouseListener {
                         return;
                     }
                 }
-
                 square1 = (Square) e.getSource();
                 if (square1.getMyPiece() != null) {
                     square1.getMyPiece().findPossibleMove(ground);
                     possibleMove = square1.getMyPiece().getPossibleMoves();
                     //set red background for possible move
-
                 }
-                if(possibleMove.size()!=0)
+                if(possibleMove!=null && possibleMove.size()!=0)
                     turn = 1;
             }
             else {
@@ -59,13 +57,49 @@ public class SquaresListener implements MouseListener {
                     square2.getMyPiece().setColumn(square2.getColumn());
                     square1.setMyPiece(null);
                     square1.removeImage(square1);
-                    checkForKish(square2.getMyPiece().getColor());
-                    //change panel background
-                    playerSelector++;
-                    if(playerSelector%2==0)
-                        Board.setWhiteBack();
-                    else
-                        Board.setBlackBack();
+                    if (kish) {
+                        if(square2.getMyPiece().getColor().equals("white"))
+                            checkForKish("black");
+                        else
+                            checkForKish("white");
+                        if (!kish) {
+                            //change panel background
+                            playerSelector++;
+                            if (playerSelector % 2 == 0)
+                                Board.setWhiteBack();
+                            else
+                                Board.setBlackBack();
+                        } else {
+                            square1.setMyPiece(square2.getMyPiece());
+                            square1.getMyPiece().setImage(square1, square1.getMyPiece().getColor());
+                            square1.getMyPiece().setRow(square1.getRow());
+                            square1.getMyPiece().setColumn(square1.getColumn());
+                            square2.setMyPiece(null);
+                            square2.removeImage(square2);
+                        }
+                    }
+                    else {
+                        if(square2.getMyPiece().getColor().equals("white"))
+                            checkForKish("black");
+                        else
+                            checkForKish("white");
+                        if(kish) {
+                            square1.setMyPiece(square2.getMyPiece());
+                            square1.getMyPiece().setImage(square1, square1.getMyPiece().getColor());
+                            square1.getMyPiece().setRow(square1.getRow());
+                            square1.getMyPiece().setColumn(square1.getColumn());
+                            square2.setMyPiece(null);
+                            square2.removeImage(square2);
+                        }
+                        else {
+                            checkForKish(square2.getMyPiece().getColor());
+                            playerSelector++;
+                            if (playerSelector % 2 == 0)
+                                Board.setWhiteBack();
+                            else
+                                Board.setBlackBack();
+                        }
+                    }
                 }
                 turn = 0;
                 possibleMove.clear();
@@ -75,20 +109,22 @@ public class SquaresListener implements MouseListener {
         ArrayList<Square> checkForKingPlace;
         ArrayList<Square> pieces = new ArrayList<>();
         Square[][] squares = ground.getSquares();
-        //get all the black pieces
+        //get all the different pieces
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (squares[i][j].getMyPiece() != null && squares[i][j].getMyPiece().getColor().equals(color)) {
-                    pieces.add(squares[i][j]);
+                          pieces.add(squares[i][j]);
                 }
             }
         }
+        kish=false;
         for (Square sq : pieces) {
             sq.getMyPiece().findPossibleMove(ground);
             checkForKingPlace = sq.getMyPiece().getPossibleMoves();
             for (Square s : checkForKingPlace) {
                 if (s.getMyPiece() instanceof King) {
                     kish = true;
+                    System.out.println(s.getMyPiece().getColumn());
                     Board.setText("Kish");
                     break;
                 }
