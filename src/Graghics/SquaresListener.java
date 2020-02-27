@@ -3,17 +3,20 @@ package Graghics;
 import com.Ground;
 import com.Square;
 import pieces.King;
+import pieces.Piece;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SquaresListener implements MouseListener {
     private Ground ground;
     private Square square1;
+    Piece loose;
     private int turn;
-    private boolean kish;
+    private boolean kish,checkMate;
     private int playerSelector;
     private ArrayList<Square> possibleMove,temptMoving;
     public SquaresListener(Ground ground) {
@@ -22,6 +25,7 @@ public class SquaresListener implements MouseListener {
         playerSelector = 0;
         turn =0 ;
         kish = false;
+        checkMate = false;
     }
 
     @Override
@@ -51,6 +55,7 @@ public class SquaresListener implements MouseListener {
                 Square square2 = (Square) e.getSource();
                 if (possibleMove.contains(square2)) {
                     //change pieces place;
+                    loose = square2.getMyPiece();
                     square2.setMyPiece(square1.getMyPiece());
                     square2.getMyPiece().setImage(square2, square2.getMyPiece().getColor());
                     square2.getMyPiece().setRow(square2.getRow());
@@ -74,8 +79,8 @@ public class SquaresListener implements MouseListener {
                             square1.getMyPiece().setImage(square1, square1.getMyPiece().getColor());
                             square1.getMyPiece().setRow(square1.getRow());
                             square1.getMyPiece().setColumn(square1.getColumn());
-                            square2.setMyPiece(null);
-                            square2.removeImage(square2);
+                            square2.setMyPiece(loose);
+                            square2.getMyPiece().setImage(square2, square2.getMyPiece().getColor());
                         }
                     }
                     else {
@@ -88,8 +93,8 @@ public class SquaresListener implements MouseListener {
                             square1.getMyPiece().setImage(square1, square1.getMyPiece().getColor());
                             square1.getMyPiece().setRow(square1.getRow());
                             square1.getMyPiece().setColumn(square1.getColumn());
-                            square2.setMyPiece(null);
-                            square2.removeImage(square2);
+                            square2.setMyPiece(loose);
+                            square2.getMyPiece().setImage(square2, square2.getMyPiece().getColor());
                         }
                         else {
                             checkForKish(square2.getMyPiece().getColor());
@@ -101,8 +106,49 @@ public class SquaresListener implements MouseListener {
                         }
                     }
                 }
-                turn = 0;
-                possibleMove.clear();
+
+                    checkForKish("black");
+                    if (kish) {
+                        checkMate("white",square2.getMyPiece());
+                        if (checkMate) {
+                            Board.setText("white is checkmate");
+                            try {
+                                new java.util.Timer().schedule(
+                                        new java.util.TimerTask() {
+                                            @Override
+                                            public void run() {
+                                                System.exit(0);
+                                            }
+                                        },
+                                        2000
+                                );
+                            }catch (Exception error){
+                                System.out.println(error.getMessage());
+                            }
+                        }
+                    }
+                    checkForKish("white");
+                    if (kish) {
+                        checkMate("black",square2.getMyPiece());
+                        if(checkMate) {
+                            Board.setText("black is checkmate");
+                            try {
+                                new java.util.Timer().schedule(
+                                        new java.util.TimerTask() {
+                                            @Override
+                                            public void run() {
+                                                System.exit(0);
+                                            }
+                                        },
+                                        2000
+                                );
+                            }catch (Exception error){
+                                System.out.println(error.getMessage());
+                            }
+                        }
+                    }
+                    turn = 0;
+                    possibleMove.clear();
             }
         }
     private void checkForKish(String color) {
@@ -124,14 +170,47 @@ public class SquaresListener implements MouseListener {
             for (Square s : checkForKingPlace) {
                 if (s.getMyPiece() instanceof King) {
                     kish = true;
-                    System.out.println(s.getMyPiece().getColumn());
                     Board.setText("Kish");
                     break;
                 }
             }
         }
     }
-
+    private void checkMate(String color,Piece checkPiece){
+        checkMate = false;
+        ArrayList<Square> KingSquares;
+        ArrayList<Square> allPieces = new ArrayList<>();
+        Square[][] squares = ground.getSquares();
+        King king = null;
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (squares[i][j].getMyPiece() != null && squares[i][j].getMyPiece().getColor().equals(color)) {
+                    allPieces.add(squares[i][j]);
+                    if(squares[i][j].getMyPiece() instanceof King)
+                        king =(King)squares[i][j].getMyPiece();
+                }
+            }
+        }
+        boolean isTrue = false;
+        if(king!=null) {
+            king.findPossibleMove(ground);
+            KingSquares =  king.getPossibleMoves();
+            if(KingSquares==null || KingSquares.size()==0)
+              for (Square s : allPieces){
+                        s.getMyPiece().findPossibleMove(ground);
+                        ArrayList<Square> tempPieces =  s.getMyPiece().getPossibleMoves();
+                        for (Square s1 : tempPieces) {
+                            if (s1.getMyPiece()==checkPiece) {
+                                isTrue = true;
+                                break;
+                            }
+                        }
+                    }
+                if(!isTrue){
+                    checkMate = true;
+                 }
+              }
+    }
     @Override
     public void mousePressed(MouseEvent e) {
 

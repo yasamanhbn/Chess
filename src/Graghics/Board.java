@@ -14,8 +14,8 @@ public class Board extends JFrame {
         setWhiteBack();
         information.setPreferredSize(new Dimension(400,800));
         text = new JLabel();
-        text.setFont(new Font("Courier", Font.BOLD,30));
-        text.setForeground(new Color(59, 240, 255));
+        text.setFont(new Font("Courier", Font.BOLD,35));
+        text.setForeground(new Color(53, 206, 255));
         information.add(text);
         this.add(information,BorderLayout.WEST);
         this.add(new Ground(),BorderLayout.CENTER);
@@ -23,14 +23,13 @@ public class Board extends JFrame {
         this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         this.setVisible(true);
     }
-    public static void setText(String t){
+     static void setText(String t){
         text.setText(t);
     }
-    public static void setWhiteBack(){
+     static void setWhiteBack(){
         information.setBackground(Color.white);
     }
-
-    public static void setBlackBack(){
+     static void setBlackBack(){
         information.setBackground(Color.black);
     }
 }

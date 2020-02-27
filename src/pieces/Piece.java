@@ -16,7 +16,7 @@ public abstract class Piece  {
         possibleMoves = new ArrayList<>();
     }
     void clearArray(){
-        if(possibleMoves!=null && possibleMoves.size()!=0)
+        if(possibleMoves!=null || possibleMoves.size()!=0)
             possibleMoves.clear();
     }
 
